@@ -15,6 +15,8 @@ ENV USER=ardupilot
 ADD . /
 RUN chown -R ardupilot:ardupilot /ardupilot && \
     bash -c "Tools/environment_install/install-prereqs-ubuntu.sh -y && apt-get install gcc-arm-none-eabi -y" && \
+    cp -r /root/.local/ /ardupilot/.local && \
+    chown -R ardupilot:ardupilot /ardupilot && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 USER ardupilot
